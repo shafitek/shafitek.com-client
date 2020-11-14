@@ -14,19 +14,17 @@ const EMAIL_LINK = "mailto:shafitek@gmail.com";
 function Navbar() {
   let enableOverlay = false;
   const [isOpen, setClick] = useState(false);
-  const [winDim, setWinDim] = useState({
-    height: window.innerHeight,
-    width: window.innerWidth,
-  });
+
 
   const closeMenu = () => setClick(false);
-  const openMenu = () => setClick(true);
+  const openMenu = () => setClick(!isOpen);
+  const closeAndscrollToTop = () => {setClick(false);window.scrollTo({ top: 0, behavior: "smooth" });};
 
   return (
     <Fragment>
       <div className="st-header">
         <div className="st-header-content">
-          <div className="st-logo-encaps-header vertical-center">
+          <div className={"st-logo-encaps-header vertical-center " + (isOpen? "st-header-translate":"")}>
             <Link to="/">
               <div className="st-logo st-scale"></div>
             </Link>
@@ -61,7 +59,7 @@ function Navbar() {
           <div className="st-main-menu">
             <ul>
               <li>
-                <Link to="/" className="home-link" onClick={closeMenu}>
+                <Link to="/" className="home-link" onClick={closeAndscrollToTop}>
                   About
                 </Link>
               </li>
@@ -69,13 +67,13 @@ function Navbar() {
                 <Link
                   to="/portfolio"
                   className="portfolio-link"
-                  onClick={closeMenu}
+                  onClick={closeAndscrollToTop}
                 >
                   Portfolio
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="blog-link" onClick={closeMenu}>
+                <Link to="/blog" className="blog-link" onClick={closeAndscrollToTop}>
                   Blog
                 </Link>
               </li>
@@ -83,7 +81,7 @@ function Navbar() {
                 <Link
                   to="/contact"
                   className="contact-link"
-                  onClick={closeMenu}
+                  onClick={closeAndscrollToTop}
                 >
                   Contact
                 </Link>
