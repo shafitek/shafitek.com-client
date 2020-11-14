@@ -13,6 +13,7 @@ function App() {
     <div className="st-wrapper">
       <Router>
         <Navbar />
+        <div className="st-wallpaper" />
         <div className="st-content">
           <Switch>
             <Route path={["/", "/about"]} component={About} exact />

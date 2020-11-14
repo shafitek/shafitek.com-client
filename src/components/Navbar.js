@@ -1,77 +1,67 @@
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faBars, faEnvelope, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.scss";
 
 const RESUME_ROUTE = process.env.PUBLIC_URL+"/files/resume.pdf";
-
-// https://www.pluralsight.com/guides/re-render-react-component-on-window-resize
-function debounce(fn, ms) {
-  let timer;
-  return (_) => {
-    clearTimeout(timer);
-    timer = setTimeout((_) => {
-      timer = null;
-      fn.apply(this, arguments);
-    }, ms);
-  };
-}
+const GITHUB_LINK = "https://github.com/shafitek";
+const LINKEDIN_LINK = "https://www.linkedin.com/in/shafitek/";
+const EMAIL_LINK = "mailto:shafitek@gmail.com";
 
 
 function Navbar() {
   let enableOverlay = false;
-  const [click, setClick] = useState(false);
+  const [isOpen, setClick] = useState(false);
   const [winDim, setWinDim] = useState({
     height: window.innerHeight,
     width: window.innerWidth,
   });
 
-  useEffect(() => {
-    const debouncedHandleResize = debounce( _ => {
-      setWinDim({
-        height: window.innerHeight,
-        width: window.innerWidth,
-      });
-    }, 1000);
-    window.addEventListener('resize', debouncedHandleResize)
-    enableOverlay = winDim.width < 768;
-    return _ => {
-      window.removeEventListener("resize", debouncedHandleResize);
-    }
-  });
-
-  const handleClick = () => setClick(enableOverlay && !click);
+  const closeMenu = () => setClick(false);
+  const openMenu = () => setClick(true);
 
   return (
     <Fragment>
+      <div className="st-header">
+        <div className="st-header-content">
+          <div className="st-logo-encaps-header vertical-center">
+            <Link to="/">
+              <div className="st-logo st-scale"></div>
+            </Link>
+          </div>
+        </div>
+      </div>
+
       <div
-        className={"st-navigation-overlay " + (click ? "st-overlay-show" : "")}
-        onClick={handleClick}
+        className={"st-navigation-overlay " + (isOpen ? "st-overlay-show" : "")}
+        onClick={closeMenu}
       />
       <nav
-        className={"st-navigation " + (click ? "" : "st-navigation-translate")}
+        className={"st-navigation " + (isOpen ? "" : "st-navigation-translate")}
       >
-        <div
-          className="menu-icon st-nav-button nav-media-q"
-          onClick={handleClick}
-        >
-          <FontAwesomeIcon icon={click ? faTimes : faBars} />
+        <div className="menu-icon st-nav-button nav-media-q" onClick={openMenu}>
+          <FontAwesomeIcon icon={isOpen ? faTimes : faBars} />
         </div>
 
         <div class="st-navigation-inner">
           <div className="st-logo-div">
             <div className="st-logo-encaps">
-              <Link to="/" onClick={handleClick}>
+              <Link to="/" onClick={closeMenu}>
                 <div className="st-logo st-scale"></div>
               </Link>
             </div>
           </div>
 
+          <div className="st-nav-dash-encaps">
+            <div className="st-nav-dash" />
+          </div>
+
           <div className="st-main-menu">
             <ul>
               <li>
-                <Link to="/" className="home-link" onClick={handleClick}>
+                <Link to="/" className="home-link" onClick={closeMenu}>
                   About
                 </Link>
               </li>
@@ -79,13 +69,13 @@ function Navbar() {
                 <Link
                   to="/portfolio"
                   className="portfolio-link"
-                  onClick={handleClick}
+                  onClick={closeMenu}
                 >
                   Portfolio
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="blog-link" onClick={handleClick}>
+                <Link to="/blog" className="blog-link" onClick={closeMenu}>
                   Blog
                 </Link>
               </li>
@@ -93,7 +83,7 @@ function Navbar() {
                 <Link
                   to="/contact"
                   className="contact-link"
-                  onClick={handleClick}
+                  onClick={closeMenu}
                 >
                   Contact
                 </Link>
@@ -112,18 +102,32 @@ function Navbar() {
               </li>
             </ul>
           </div>
-        </div>
-      </nav>
 
-      <div className="st-header">
-        <div className="st-header-content">
-          <div className="st-logo-encaps-header vertical-center">
-            <Link to="/">
-              <div className="st-logo st-scale"></div>
-            </Link>
+          <div class="st-nav-footer">
+            <ul>
+              <li>
+                <a href={LINKEDIN_LINK} target="blank">
+                  <FontAwesomeIcon icon={faLinkedin} />
+                </a>
+              </li>
+              <li>
+                <a href={GITHUB_LINK} target="blank">
+                  <FontAwesomeIcon icon={faGithub} />
+                </a>
+              </li>
+              <li>
+                <a href={EMAIL_LINK} target="blank">
+                  <FontAwesomeIcon icon={faEnvelope} />
+                </a>
+              </li>
+            </ul>
+            <div className="st-nav-footer-gap">
+              <div className="st-nav-dash-footer" />
+            </div>
+            <p>&copy; 2020 shafitek.</p>
           </div>
         </div>
-      </div>
+      </nav>
     </Fragment>
   );
 }
