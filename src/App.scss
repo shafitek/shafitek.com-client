@@ -1,38 +1,59 @@
-.App {
-  text-align: center;
+@import "~bootstrap/scss/bootstrap";
+
+// ######### SHAFITEK GLOBAL VARIABLES BEGIN #########
+
+$bgcolor: #fff;
+$fgcolor: #cd2653;
+$navcolor: $fgcolor;
+$nav-link-color: #fff;
+$nav-accent: #fff;
+$defcolor: #000;
+$nav-menu-bg: #000;
+$white: #fff;
+$font-primary: "Lucida Console", Monaco, monospace;
+$header-height: 100px;
+$st-logo: url("../images/st-logo192.png");
+$st-nav-logo-size: 192px;
+$menu-width: 250px;
+
+$screen-sm: 768px;
+
+// ######### SHAFITEK GLOBAL VARIABLES END #########
+
+body {
+  background: $bgcolor;
+  color: $defcolor;
+  font-family: $font-primary;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.8rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+a,
+a:hover,
+a:active {
+  color: $fgcolor;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.st-wrapper {
+  padding-left: 250px;
+  position: relative;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  z-index: 1;
+
+  @media only screen and (max-width: $screen-sm) {
+    padding-left: 0;
+  }
 }
 
-.App-link {
-  color: #61dafb;
+.st-content {
+  position: relative;
+  top: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
