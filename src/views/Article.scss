@@ -1,0 +1,31 @@
+@import "../App.scss";
+
+.blog-post-title {
+  margin-top: 2rem;
+  font-weight: 900;
+}
+.blog-post {
+  max-width: 100%;
+  img {
+    max-width: 100%;
+  }
+}
+
+.blog-post {
+  background-color: rgba($color: $bgcolor, $alpha: 1.0);
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+  b, strong {
+    font-weight: bold;
+  }
+  h1, h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  a{
+    word-break: break-all;
+  }
+}

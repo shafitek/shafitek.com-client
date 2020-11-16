@@ -1,11 +1,12 @@
 import React from "react";
+import PageTitle from "../components/PageTitle";
 import "./About.scss";
 
 function About() {
   return (
     <div className="about-page">
-      <h1>About</h1>
-      <div styleName="test">
+      <PageTitle title="About" />
+      <div className="row mt-30-reverse">
         Ex id nostrud minim elit ipsum elit et mollit. Ullamco consequat tempor
         commodo quis Lorem. Sit non ullamco culpa in consectetur ad magna
         eiusmod excepteur irure tempor. Et commodo Lorem Lorem mollit

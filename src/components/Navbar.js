@@ -43,7 +43,7 @@ function Navbar() {
           <FontAwesomeIcon icon={isOpen ? faTimes : faBars} />
         </div>
 
-        <div class="st-navigation-inner">
+        <div className="st-navigation-inner">
           <div className="st-logo-div">
             <div className="st-logo-encaps">
               <Link to="/" onClick={closeMenu}>
@@ -101,7 +101,7 @@ function Navbar() {
             </ul>
           </div>
 
-          <div class="st-nav-footer">
+          <div className="st-nav-footer">
             <ul>
               <li>
                 <a href={LINKEDIN_LINK} target="blank">

@@ -1,17 +1,16 @@
 import React, { Fragment } from "react";
-import Post from "./Post";
 import { Switch, Route } from "react-router-dom";
 import Categories from "./Categories";
-import AllPosts from "./AllPosts";
-import Error404 from "./404";
+import Articles from "./Articles";
+import Article from "./Article";
 
 function Blog({ match }) {
   return (
     <Fragment>
       <Switch>
         <Route path={`${match.path}/categories`} component={Categories} />
-        <Route path={`${match.path}/:slug`} component={Post} />
-        <Route path={`${match.path}`} component={AllPosts} />
+        <Route path={`${match.path}/:slug`} component={Article} />
+        <Route path={`${match.path}`} component={Articles} />
       </Switch>
     </Fragment>
   );

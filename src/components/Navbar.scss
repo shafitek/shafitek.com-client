@@ -7,7 +7,7 @@
   width: 100%;
   height: $header-height;
   background-color: transparent;
-
+  overflow: hidden;
   @media only screen and (max-width: $screen-sm) {
     height: $header-height;
     z-index: 9;

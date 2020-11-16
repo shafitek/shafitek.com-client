@@ -1,0 +1,44 @@
+@import "../App.scss";
+
+.st-page-title {
+  height: 60px;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
+  font-weight: bolder;
+  width: 100%;
+
+  h1 {
+    margin-top: 25px;
+    font-weight: bolder;
+    position: relative;
+    padding-bottom: 15px;
+    text-transform: uppercase;
+    right: 0px;
+  }
+
+  span {
+    position: absolute;
+    right: 0rem;
+    top: 100%;
+    font-size: 3.5rem;
+    line-height: 1;
+    font-weight: 900;
+    color: rgba(25, 29, 43, 0.1);
+    display: inline-block;
+    text-transform: uppercase;
+    z-index: -1;
+    transform: translateY(-30%);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    text-decoration: underline;
+  @media only screen and (max-width: $screen-sm) {
+    transform: translateY(-40%);
+    font-size: 3.0rem;
+  }
+  }
+}
