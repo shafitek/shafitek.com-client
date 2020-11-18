@@ -1,50 +1,51 @@
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useCallback } from "react";
+import React from "react";
 import "./PortfolioProject.scss";
-import hljs from "highlight.js";
 import no_image from "../images/no-image.png";
-import { createMarkup } from "../utils.js";
-
-// const NO_IMAGE_SRC = process.env.PUBLIC_URL + "/no-image.png";
+import { createMarkup } from "../utils";
 
 function PortfolioProject(props) {
-  const nodeRef = useCallback((node) => {
-    if (node) {
-      hljs.initHighlighting();
-      const nodes = node.querySelectorAll("pre");
-      nodes.forEach((block) => {
-        hljs.highlightBlock(block);
-      });
-    }
-  });
+  let content_image = null;
+  let content_link_img = null;
+
+  if (props.info.post_img) {
+    content_image = (
+      // <a href={!props.info.link ? "#" : props.info.link} target="blank">
+        <div
+          className="st-portfolio-project-image"
+          style={{
+            backgroundImage: `url(${
+              !props.info.post_img ? no_image : props.info.post_img
+            })`,
+          }}
+        ></div>
+      // </a>
+    );
+  }
+
+  if (props.info.link) {
+    content_link_img = (
+      <span className="github-link">
+        <FontAwesomeIcon icon={faGithub} />
+      </span>
+    );
+  }
 
   return (
-    // <div className="col-lg-6 col-md-6 col-12 mt-30">
-    <div className="card st-portfolio-project">
+    <div className="card box st-portfolio-project">
       <div className="st-portfolio-project-inner">
-        <a href="#">
-          <div
-            className="st-portfolio-project-image"
-            style={{ backgroundImage: `url(${no_image})` }}
-          ></div>
-        </a>
+        {content_image}
         <h4 className="st-portfolio-project-title">
-          <a href="#">{props.info.title}</a>
-          <a
-            href={!props.info.link ? "#" : props.info.link}
-            className="github-link"
-            target="blank"
-          >
-            <FontAwesomeIcon icon={faGithub} />
+          <a href={!props.info.link ? "#" : props.info.link} target="blank">
+            {props.info.title}
           </a>
+          {content_link_img}
         </h4>
-        {/* <div
-          ref={nodeRef}
-          className="st-portfolio-project-excerpt"
+        <div
           dangerouslySetInnerHTML={createMarkup(props.info.html)}
-        /> */}
-        <div className="st-portfolio-project-excerpt">{props.info.excerpt}</div>
+          className="st-portfolio-project-excerpt"
+        />
       </div>
     </div>
   );

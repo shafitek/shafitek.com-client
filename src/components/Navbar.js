@@ -5,10 +5,9 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.scss";
 
-const RESUME_ROUTE = process.env.PUBLIC_URL+"/files/resume.pdf";
-const GITHUB_LINK = "https://github.com/shafitek";
-const LINKEDIN_LINK = "https://www.linkedin.com/in/shafitek/";
-const EMAIL_LINK = "mailto:shafitek@gmail.com";
+const RESUME_ROUTE = process.env.REACT_APP_PROFILE_RESUME;
+const GITHUB_LINK = process.env.REACT_APP_GITHUB_LINK;
+const LINKEDIN_LINK = process.env.REACT_APP_LINKEDIN_LINK;
 
 
 function Navbar() {
@@ -24,7 +23,12 @@ function Navbar() {
     <Fragment>
       <div className="st-header">
         <div className="st-header-content">
-          <div className={"st-logo-encaps-header vertical-center " + (isOpen? "st-header-translate":"")}>
+          <div
+            className={
+              "st-logo-encaps-header vertical-center " +
+              (isOpen ? "st-header-translate" : "")
+            }
+          >
             <Link to="/">
               <div className="st-logo st-scale"></div>
             </Link>
@@ -59,7 +63,11 @@ function Navbar() {
           <div className="st-main-menu">
             <ul>
               <li>
-                <Link to="/" className="home-link" onClick={closeAndscrollToTop}>
+                <Link
+                  to="/"
+                  className="home-link"
+                  onClick={closeAndscrollToTop}
+                >
                   About
                 </Link>
               </li>
@@ -73,7 +81,11 @@ function Navbar() {
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="blog-link" onClick={closeAndscrollToTop}>
+                <Link
+                  to="/blog"
+                  className="blog-link"
+                  onClick={closeAndscrollToTop}
+                >
                   Blog
                 </Link>
               </li>
@@ -114,9 +126,15 @@ function Navbar() {
                 </a>
               </li>
               <li>
-                <a href={EMAIL_LINK} target="blank">
+                {/* <a href={EMAIL_LINK} target="blank">
                   <FontAwesomeIcon icon={faEnvelope} />
-                </a>
+                </a> */}
+                <Link
+                  to="/contact"
+                  onClick={closeAndscrollToTop}
+                >
+                  <FontAwesomeIcon icon={faEnvelope} />
+                </Link>
               </li>
             </ul>
             <div className="st-nav-footer-gap">

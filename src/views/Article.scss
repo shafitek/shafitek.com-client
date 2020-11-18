@@ -1,17 +1,18 @@
 @import "../App.scss";
 
-.blog-post-title {
-  margin-top: 2rem;
-  font-weight: 900;
-}
 .blog-post {
+  position: relative;
+  padding: 2px 15px 0 15px;
+  border-radius: 5px;
+  @media only screen and (max-width: $screen-sm) {
+    padding: 0px 5px 0 5px;
+  }
   max-width: 100%;
+  // border: 1px solid $fgcolor;
+  margin-top: 1rem;
   img {
     max-width: 100%;
   }
-}
-
-.blog-post {
   background-color: rgba($color: $bgcolor, $alpha: 1.0);
   word-break: break-word;
   -webkit-hyphens: auto;
@@ -21,11 +22,19 @@
     font-weight: bold;
   }
   h1, h2 {
-    margin-top: 2rem;
     margin-bottom: 1rem;
     font-weight: 600;
+  }
+  .blog-post-title {
+    margin-top: 2rem;
+    font-weight: bolder;
   }
   a{
     word-break: break-all;
   }
+}
+
+.comment-section {
+  margin-top: 2rem;
+  background-color: $altcolor;
 }

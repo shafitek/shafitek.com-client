@@ -1,5 +1,9 @@
 @import "../App.scss";
 
 .article-link {
-    margin-bottom: 3rem;
+    padding: 10px;
+    margin-bottom: 2rem;
+    h3 {
+        font-weight: bold;
+    }
 }

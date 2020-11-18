@@ -1,0 +1,33 @@
+$bgcolor: #fff;
+$altcolor: #000;
+$fgcolor: #cd2653;
+
+.categories-div {
+  position: relative;
+  line-height: 2.5rem;
+  left: 0;
+  margin: 0;
+  padding: 0;
+
+ul {
+    display: inline;
+    padding-inline-start: 0px;
+}
+
+li {
+    display: inline-block;
+    text-align: left;
+}
+
+  .categories-ul {
+
+  }
+  .categories-div-link {
+    margin: 0.3rem;
+    padding: 0.25rem;
+    border-radius: 2px;
+    background-color: rgba($color: $altcolor, $alpha: 1);
+    color: $bgcolor;
+    word-break: keep-all;
+  }
+}

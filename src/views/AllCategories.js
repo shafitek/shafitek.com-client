@@ -1,9 +1,12 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import Error500 from '../components/Error500';
-import LoaderIcon from '../components/LoaderIcon';
-import PageTitle from '../components/PageTitle'
-import HttpRequest from '../hooks/HttpRequest';
+import React from "react";
+import { Link } from "react-router-dom";
+import Error404 from "../components/Error404";
+import Error500 from "../components/Error500";
+import HelmetComponent from "../components/HelmetComponent";
+import HttpResponseError from "../components/HttpResponseError";
+import LoaderIcon from "../components/LoaderIcon";
+import PageTitle from "../components/PageTitle";
+import HttpRequest from "../hooks/HttpRequest";
 
 const CATEGORIES_API_URL =
   process.env.REACT_APP_BASE_ADDRESS +
@@ -12,39 +15,45 @@ const CATEGORIES_API_URL =
 const CATEGORIES_URL = process.env.REACT_APP_BLOG_CATEGORIES;
 
 function AllCategories() {
+  const categroies = HttpRequest(CATEGORIES_API_URL);
 
-    const categroies = HttpRequest(CATEGORIES_API_URL);
-    
-    let content = null;
+  let content = null;
 
-    if (categroies.loading) {
-      content = <LoaderIcon />;
-    }
+  if (categroies.loading) {
+    content = <LoaderIcon />;
+  }
 
-    if (categroies.data && !categroies.error) {
-      content = categroies.data.data.map((category, key) => {
-        return (
-          <div key={key} className="category-link">
-            <h5>
-              <Link to={CATEGORIES_URL + category.slug}>{category.name}</Link>
+  let meta = {
+    title: "Categories",
+    desc: "All blog categories.",
+  };
+
+  if (categroies.data && !categroies.error) {
+    content = categroies.data.data.map((category, key) => {
+      return (
+        <div key={key} className="category-link">
+          <Link to={CATEGORIES_URL + category.slug}>
+            <h5 style={{ fontWeight: "bold", display: "inline-block" }}>
+              {category.name}
             </h5>
-          </div>
-        );
-      });
-    }
+          </Link>
+        </div>
+      );
+    });
+  }
 
-    if (categroies.error) {
-      // console.log(categroies.error);
-      content = <Error500 />;
-    }
+  if (categroies.error) {
+    content = HttpResponseError(categroies);
+  }
 
-    return (
-      <div className="categories-page">
-        <PageTitle title="Categories" />
-        <div style={{height: `1rem`}} />
-        {content}
-      </div>
-    );
+  return (
+    <div className="categories-page">
+      <HelmetComponent meta={meta} />
+      <PageTitle title="Categories" />
+      <div style={{ height: `1rem`, lineHeight: "1.5rem" }} />
+      {content}
+    </div>
+  );
 }
 
-export default AllCategories
+export default AllCategories;

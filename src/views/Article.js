@@ -7,7 +7,9 @@ import HttpRequest from "../hooks/HttpRequest";
 import { createMarkup, getDateFromDateStr } from "../utils.js";
 import CategoryLink from "../components/CategoryLink";
 import LoaderIcon from "../components/LoaderIcon";
-import Error500 from "../components/Error500";
+import HelmetComponent from "../components/HelmetComponent";
+import { DiscussionEmbed } from "disqus-react";
+import HttpResponseError from "../components/HttpResponseError";
 
 const ARTICLE_API_URL_PREFIX =
   process.env.REACT_APP_BASE_ADDRESS +
@@ -16,15 +18,23 @@ const ARTICLE_API_URL_PREFIX =
 function Article({ match }) {
   const { slug } = useParams();
 
-  const ARTICLE_URL = ARTICLE_API_URL_PREFIX + slug;
+  const ARTICLE_API_URL = ARTICLE_API_URL_PREFIX + slug;
 
-  const article = HttpRequest(ARTICLE_URL);
+  const ARTICLE_URL =
+    process.env.REACT_APP_DOMAIN + process.env.REACT_APP_BLOG + slug;
+
+  const article = HttpRequest(ARTICLE_API_URL);
 
   let content = null;
 
   if (article.loading) {
     content = <LoaderIcon />;
   }
+
+  let meta = {
+    title: "Article",
+    desc: null,
+  };
 
   const nodeRef = useCallback((node) => {
     if (node) {
@@ -39,31 +49,42 @@ function Article({ match }) {
   if (article.data && !article.error) {
     const post = article.data.data;
     if (!post) {
-      return <Redirect to="/404" />
+      return <Redirect to="/404" />;
     }
 
+    meta = {
+      title: post.title,
+      desc: post.excerpt,
+    };
+
     let categories = CategoryLink(post.Categories);
-    
-    
+
     content = (
       <Fragment>
-        <h2 className="blog-post-title">{post.title}</h2>
-        {getDateFromDateStr(post.createdAt)}
-        <div className="categories-div">
-          Categories: {categories}
-        </div>
-        <div
-          ref={nodeRef}
-          className="blog-post"
-          dangerouslySetInnerHTML={createMarkup(post.html)}
+        <HelmetComponent meta={meta} />
+        <div className="blog-post box">
+          <h2 className="blog-post-title">{post.title}</h2>
+          {getDateFromDateStr(post.createdAt)}
+          <div className="categories-div">{categories}</div>
+          <div
+            ref={nodeRef}
+            dangerouslySetInnerHTML={createMarkup(post.html)}
           />
+          <DiscussionEmbed
+            shortname="shafitek-com"
+            config={{
+              url: ARTICLE_URL,
+              identifier: slug,
+              title: post.title,
+            }}
+          />
+        </div>
       </Fragment>
     );
   }
-  
+
   if (article.error) {
-    // console.log(article.error);
-    content = <Error500 />;
+    content = HttpResponseError(article);
   }
 
   return <DisplayHandler match={match} display={content} />;

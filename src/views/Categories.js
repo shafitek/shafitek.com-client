@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Switch, Route } from "react-router-dom";
 import Category from "./Category";
 import AllCategories from "./AllCategories";
-import Error404 from "./404";
+import Error404 from "../components/Error404";
 
 function Categories({ match }) {
   return (
