@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import "./CategoryLink.scss"
 
 const CATEGORY_URL_PREFIX = "/blog/categories/";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import "./main.scss";
 import Navbar from "./components/Navbar";
-import "./App.scss";
 import About from "./views/About";
 import Portfolio from "./views/Portfolio";
 import Blog from "./views/Blog";

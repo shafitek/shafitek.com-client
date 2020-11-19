@@ -1,5 +1,4 @@
 import React from 'react'
-import "./Error500.scss"
 import HelmetComponent from './HelmetComponent';
 function Error404() {
     return (

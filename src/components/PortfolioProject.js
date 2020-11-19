@@ -1,7 +1,6 @@
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import "./PortfolioProject.scss";
 import no_image from "../images/no-image.png";
 import { createMarkup } from "../utils";
 

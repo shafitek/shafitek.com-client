@@ -1,7 +1,6 @@
 import React from "react";
 import HelmetComponent from "../components/HelmetComponent";
 import PageTitle from "../components/PageTitle";
-import "./Contact.scss";
 
 function Contact() {
 

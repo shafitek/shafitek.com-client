@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import "./ArticleLink.scss";
 import {getDateFromDateStr} from "../utils.js";
 import CategoryLink from "./CategoryLink";
 

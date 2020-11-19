@@ -4,7 +4,6 @@ import React from "react";
 import HelmetComponent from "../components/HelmetComponent";
 import PageTitle from "../components/PageTitle";
 import SkillsCard from "../components/SkillsCard";
-import "./About.scss";
 
 function About() {
   let meta = {

@@ -1,5 +1,4 @@
 import React from "react";
-import "./LoaderIcon.scss";
 
 function LoaderIcon() {
   return (

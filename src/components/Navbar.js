@@ -3,7 +3,6 @@ import { faBars, faEnvelope, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./Navbar.scss";
 
 const RESUME_ROUTE = process.env.REACT_APP_PROFILE_RESUME;
 const GITHUB_LINK = process.env.REACT_APP_GITHUB_LINK;

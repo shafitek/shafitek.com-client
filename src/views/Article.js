@@ -1,7 +1,6 @@
 import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { Link, Redirect, useParams } from "react-router-dom";
 import DisplayHandler from "../components/DisplayHandler";
-import "./Article.scss";
 import hljs from "highlight.js";
 import HttpRequest from "../hooks/HttpRequest";
 import { createMarkup, getDateFromDateStr } from "../utils.js";
@@ -67,6 +66,7 @@ function Article({ match }) {
           {getDateFromDateStr(post.createdAt)}
           <div className="categories-div">{categories}</div>
           <div
+            className="blog-article"
             ref={nodeRef}
             dangerouslySetInnerHTML={createMarkup(post.html)}
           />
